@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Yash News</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{{ url_for('static', filename = 'css/styles.css') }}" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Responsive navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="/">Yash News</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Page header with logo and tagline-->
+        <header class="py-5 bg-light border-bottom mb-4">
+            <div class="container">
+                <div class="text-center my-5">
+                    <h1 class="fw-bolder">Welcome to Yash News!</h1>
+                    <p class="lead mb-0">Your one stop for all the world news!</p>
+                </div>
+            </div>
+        </header>
+
+        {% block body %} {% endblock %}
+
+                        <!-- Side widgets-->
+                <div class="col-lg-4">
+                    <!-- Search widget-->
+                    <div class="card mb-4">
+                        <div class="card-header">Search</div>
+                        <div class="card-body">
+                            <div class="input-group">
+                                <div class="tab">
+                                    <style>
+    body {font-family: Arial;}
+
+    /* Style the tab */
+    .tab {
+      overflow: hidden;
+      border: 1px solid #ccc;
+      background-color: #f1f1f1;
+    }
+
+    /* Style the buttons inside the tab */
+    .tab button {
+      background-color: inherit;
+      float: left;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 16px 36px;
+      transition: 0.3s;
+      font-size: 17px;
+    }
+
+    /* Change background color of buttons on hover */
+    .tab button:hover {
+      background-color: #ddd;
+    }
+
+    /* Create an active/current tablink class */
+    .tab button.active {
+      background-color: #ccc;
+    }
+
+    /* Style the tab content */
+    .tabcontent {
+      display: none;
+      padding: 0px 57px;
+      border: 1px solid #ccc;
+      border-top: none;
+    }
+</style>
+  <button class="tablinks" onclick="openCity(event, 'key_search')">Search All</button>
+  <button class="tablinks" onclick="openCity(event, 'domain_search')">Search by Domain</button>
+  <button class="tablinks" onclick="openCity(event, 'cc_search')">Search by Country and Category</button>
+</div>
+
+<div id="key_search" class="tabcontent">
+    <br>
+  <h3>Search All Keywords</h3>
+  
+  <form action="/key_search/1" method="post">
+
+                                <input class="form-control" type="text" name="search_term" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
+                                <br>
+                                <label for="cars">Search In:</label>
+                                  <select id="cars" name="searchin">
+                                    <option value="title">Title</option>
+                                    <option value="content">Content</option>
+                                    <option value="description">Description</option>
+                                  </select>
+                                  <br>
+                                  <br>
+                                  <label for="cars">Language:</label>
+                                  <select id="cars" name="language">
+                                    
+<option value="en">English</option>
+<option value="af">Afrikaans</option>
+<option value="ar">Arabic</option>
+<option value="bn">Bengali</option>
+<option value="zh">Chinese</option>
+<option value="cs">Czech</option>
+<option value="da">Danish</option>
+<option value="nl">Dutch</option>
+<option value="fi">Finnish</option>
+<option value="fr">French</option>
+<option value="de">German</option>
+<option value="el">Greek</option>
+<option value="he">Hebrew</option>
+<option value="hi">Hindi</option>
+<option value="hu">Hungarian</option>
+<option value="id">Indonesian</option>
+<option value="it">Italian</option>
+<option value="ja">Japanese</option>
+<option value="ko">Korean</option>
+<option value="ms">Malay</option>
+<option value="no">Norwegian</option>
+<option value="fa">Persian</option>
+<option value="pl">Polish</option>
+<option value="pt">Portuguese</option>
+<option value="ro">Romanian</option>
+<option value="ru">Russian</option>
+<option value="es">Spanish</option>
+<option value="sv">Swedish</option>
+<option value="th">Thai</option>
+<option value="tr">Turkish</option>
+<option value="uk">Ukrainian</option>
+<option value="vi">Vietnamese</option>
+
+                                  </select>
+                                  <br>
+                                  <br>
+                                  <label for="birthday">From:</label>
+                                  <input type="date" id="from" name="from">
+                                  <br>
+                                  <br>
+                                  <label for="birthday">To:</label>
+                                  <input type="date" id="to" name="to">
+                                  <br>
+                                  <br>
+                                  <label for="birthday">Sort By:</label>
+                                  <select id="cars" name="searchin">
+                                    <option value="relevancy">Relevancy</option>
+                                    <option value="popularity">Popularity</option>
+                                    <option value="publishedAt">Published At</option>
+                                  </select>
+                                  <hr>
+
+                                <button class="btn btn-primary" id="button-search" type="submit">Go!</button>
+                                <br>
+                                <br>
+                            </form>
+</div>
+
+
+<div id="domain_search" class="tabcontent">
+    <br>
+  <h3>Search by Domain</h3>
+  
+  <form action="/domain_search/1" method="post">
+
+                                <input class="form-control" type="text" name="search_term" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
+                                <br>
+
+                                <label for="cars">Search In:</label>
+                                  <select id="cars" name="searchin">
+                                    <option value="title">Title</option>
+                                    <option value="content">Content</option>
+                                    <option value="description">Description</option>
+                                  </select>
+                                  <br>
+                                  <br>
+                                  <label for="cars">Language:</label>
+                                  <select id="cars" name="language">
+                                    <option value="en">English</option>
+<option value="af">Afrikaans</option>
+<option value="ar">Arabic</option>
+<option value="bn">Bengali</option>
+<option value="zh">Chinese</option>
+<option value="cs">Czech</option>
+<option value="da">Danish</option>
+<option value="nl">Dutch</option>
+<option value="fi">Finnish</option>
+<option value="fr">French</option>
+<option value="de">German</option>
+<option value="el">Greek</option>
+<option value="he">Hebrew</option>
+<option value="hi">Hindi</option>
+<option value="hu">Hungarian</option>
+<option value="id">Indonesian</option>
+<option value="it">Italian</option>
+<option value="ja">Japanese</option>
+<option value="ko">Korean</option>
+<option value="ms">Malay</option>
+<option value="no">Norwegian</option>
+<option value="fa">Persian</option>
+<option value="pl">Polish</option>
+<option value="pt">Portuguese</option>
+<option value="ro">Romanian</option>
+<option value="ru">Russian</option>
+<option value="es">Spanish</option>
+<option value="sv">Swedish</option>
+<option value="th">Thai</option>
+<option value="tr">Turkish</option>
+<option value="uk">Ukrainian</option>
+<option value="vi">Vietnamese</option>
+
+                                  </select>
+                                  <br>
+                                  <br>
+                                  <label for="birthday">From:</label>
+                                  <input type="date" id="birthday" name="from">
+                                  <br>
+                                  <br>
+                                  <label for="birthday">To:</label>
+                                  <input type="date" id="birthday" name="to">
+                                  <br>
+                                  <br>
+                                  <label for="birthday">Sort By:</label>
+                                  <select id="cars" name="sortby">
+                                    <option value="relevancy">Relevancy</option>
+                                    <option value="popularity">Popularity</option>
+                                    <option value="publishedAt">Published At</option>
+                                  </select>
+                                   <br>
+                                  <br>
+                                  <label for="birthday">Select Domains:</label>
+                                  <select id="cars" name="domain">
+                                    <option value="all">All</option>
+                                    <option value="bbc.co.uk">BBC UK</option>
+<option value="cnn.com">CNN</option>
+<option value="nytimes.com">The New York Times</option>
+<option value="theguardian.com">The Guardian</option>
+<option value="lemonde.fr">Le Monde</option>
+<option value="spiegel.de">Der Spiegel</option>
+<option value="russia.ru">Russia Today</option>
+<option value="folha.uol.com.br">Folha de S.Paulo</option>
+<option value="eluniversal.com.mx">El Universal</option>
+<option value="hindustantimes.com">Hindustan Times</option>
+<option value="thehindu.com">The Hindu</option>
+<option value="chinadaily.com.cn">China Daily</option>
+<option value="japantimes.co.jp">The Japan Times</option>
+<option value="dailysun.com.bd">Daily Sun</option>
+<option value="allafrica.com">AllAfrica</option>
+<option value="aljazeera.com">Al Jazeera</option>
+<option value="news24.com">News24</option>
+<option value="sydney.edu.au/news">University of Sydney News</option>
+<option value="reuters.com">Reuters</option>
+<option value="dw.com">Deutsche Welle</option>
+<option value="rtve.es">RTVE</option>
+<option value="timesofindia.indiatimes.com">Times of India</option>
+<option value="indianexpress.com">Indian Express</option>
+<option value="hindustantimes.com">Hindustan Times</option>
+<option value="thehindu.com">The Hindu</option>
+<option value="dnaindia.com">DNA India</option>
+<option value="ndtv.com">NDTV</option>
+<option value="indiatoday.in">India Today</option>
+<option value="deccanherald.com">Deccan Herald</option>
+<option value="telegraphindia.com">The Telegraph</option>
+<option value="tribuneindia.com">The Tribune</option>
+</select>
+
+                                  </select>
+                                  <br>
+                                  <br>
+                                  <label for="birthday">Exclude Domains:</label>
+                                  <select id="cars" name="edomain">
+                                    <option value="none">None</option>
+                                    <option value="bbc.co.uk">BBC UK</option>
+<option value="cnn.com">CNN</option>
+<option value="nytimes.com">The New York Times</option>
+<option value="theguardian.com">The Guardian</option>
+<option value="lemonde.fr">Le Monde</option>
+<option value="spiegel.de">Der Spiegel</option>
+<option value="russia.ru">Russia Today</option>
+<option value="folha.uol.com.br">Folha de S.Paulo</option>
+<option value="eluniversal.com.mx">El Universal</option>
+<option value="hindustantimes.com">Hindustan Times</option>
+<option value="thehindu.com">The Hindu</option>
+<option value="chinadaily.com.cn">China Daily</option>
+<option value="japantimes.co.jp">The Japan Times</option>
+<option value="dailysun.com.bd">Daily Sun</option>
+<option value="allafrica.com">AllAfrica</option>
+<option value="aljazeera.com">Al Jazeera</option>
+<option value="news24.com">News24</option>
+<option value="sydney.edu.au/news">University of Sydney News</option>
+<option value="reuters.com">Reuters</option>
+<option value="dw.com">Deutsche Welle</option>
+<option value="rtve.es">RTVE</option>
+<option value="timesofindia.indiatimes.com">Times of India</option>
+<option value="indianexpress.com">Indian Express</option>
+<option value="hindustantimes.com">Hindustan Times</option>
+<option value="thehindu.com">The Hindu</option>
+<option value="dnaindia.com">DNA India</option>
+<option value="ndtv.com">NDTV</option>
+<option value="indiatoday.in">India Today</option>
+<option value="deccanherald.com">Deccan Herald</option>
+<option value="telegraphindia.com">The Telegraph</option>
+<option value="tribuneindia.com">The Tribune</option>
+</select>
+                                  </select>
+                                  <hr>
+
+                                <button class="btn btn-primary" id="button-search" type="submit">Go!</button>
+                                <br>
+                                <br>
+                            </form>
+</div>
+<div id="cc_search" class="tabcontent">
+    <br>
+  <h3>Search by Country and Category</h3>
+  <br>
+  <form action="/cc_search/1" method="post">
+
+                                <input class="form-control" type="text" name="search_term" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
+                                </option>
+                                  </select>
+                                  <br>
+                                  <label for="birthday">Select Country:</label>
+                                  <select id="cars" name="country">
+                                    <option value="in">India</option>
+                                    <option value="ae">United Arab Emirates</option>
+<option value="ar">Argentina</option>
+<option value="at">Austria</option>
+<option value="au">Australia</option>
+<option value="be">Belgium</option>
+<option value="bg">Bulgaria</option>
+<option value="br">Brazil</option>
+<option value="ca">Canada</option>
+<option value="ch">Switzerland</option>
+<option value="cn">China</option>
+<option value="co">Colombia</option>
+<option value="cu">Cuba</option>
+<option value="cz">Czech Republic</option>
+<option value="de">Germany</option>
+<option value="eg">Egypt</option>
+<option value="fr">France</option>
+<option value="gb">United Kingdom</option>
+<option value="gr">Greece</option>
+<option value="hk">Hong Kong</option>
+<option value="hu">Hungary</option>
+<option value="id">Indonesia</option>
+<option value="ie">Ireland</option>
+<option value="il">Israel</option>
+<option value="it">Italy</option>
+<option value="jp">Japan</option>
+<option value="kr">South Korea</option>
+<option value="lt">Lithuania</option>
+<option value="lv">Latvia</option>
+<option value="ma">Morocco</option>
+<option value="mx">Mexico</option>
+<option value="my">Malaysia</option>
+<option value="ng">Nigeria</option>
+<option value="nl">Netherlands</option>
+<option value="no">Norway</option>
+<option value="nz">New Zealand</option>
+<option value="ph">Philippines</option>
+<option value="pl">Poland</option>
+<option value="pt">Portugal</option>
+<option value="ro">Romania</option>
+<option value="rs">Serbia</option>
+<option value="ru">Russia</option>
+<option value="sa">Saudi Arabia</option>
+<option value="se">Sweden</option>
+<option value="sg">Singapore</option>
+<option value="si">Slovenia</option>
+<option value="sk">Slovakia</option>
+<option value="th">Thailand</option>
+<option value="tr">Turkey</option>
+<option value="tw">Taiwan</option>
+<option value="ua">Ukraine</option>
+<option value="us">United States</option>
+<option value="ve">Venezuela</option>
+<option value="za">South Africa</option>
+
+                                  </select>
+                                  <br>
+                                  <br>
+                                  <label for="birthday">Select Category:</label>
+                                  <select id="cars" name="category">
+                                    <option value="business">Business</option>
+<option value="entertainment">Entertainment</option>
+<option value="general">General</option>
+<option value="health">Health</option>
+<option value="science">Science</option>
+<option value="sports">Sports</option>
+<option value="technology">Technology</option>
+                                  </select>
+                                  <hr>
+
+                                <button class="btn btn-primary" id="button-search" type="submit">Go!</button>
+                                <br>
+                                <br>
+                            </form>
+</div>
+
+
+<script>
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+</script>
+                                <!--  -->
+<!-- 
+                            <hr>
+                            <hr>
+                            <h4> Search By Country and Category </h4>
+                                <form action="/c_search" method="post">
+                                  <label for="cars">Country:</label>
+                                  <select id="cars" name="country">
+                                    <option value="in">India</option>
+                                    <option value="us">US</option>
+                                    <option value="fiat">China</option>
+                                    <option value="audi">UK</option>
+                                  </select>
+                                  <br>
+                                  <br>
+                                  <label for="cars">Category:</label>
+                                  <select id="cars" name="category">
+                                    <option value="business">business</option>
+                                    <option value="health">Health</option>
+                                    <option value="sports">Sports</option>
+                                    <option value="audi">Last Month</option>
+                                  </select>
+                                  <br>
+                                  <button class="btn btn-primary" id="button-search" type="submit">Go!</button>
+                            </form> -->
+                                  <br>
+                                  <hr>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Side widget-->
+
+                </div>
+            </div>
+        </div>
+        <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Yash Hemnani</p></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>

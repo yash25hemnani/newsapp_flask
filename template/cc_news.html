@@ -1,0 +1,130 @@
+{% extends "layout.html" %}
+
+{% block body %}
+        <!-- Page content-->
+        <div class="container">
+            <div class="row">
+                <!-- Blog entries-->
+                <div class="col-lg-8">
+                    <!-- Featured blog post-->
+                    <div class="card mb-4">
+                        <a href="#!"><img class="card-img-top" src="{{articles[0]['urlToImage']}}" alt="..." /></a>
+                        <div class="card-body">
+                            <div class="small text-muted">{{articles[0]['author']}}</div>
+                            <h2 class="card-title">{{articles[0]['title']}}</h2>
+                            <p class="card-text">{{articles[0]['description']}}!</p>
+                            <a class="btn btn-primary" href="{{articles[0]['url']}}">Read more →</a>
+                        </div>
+                    </div>
+                    <!-- Nested row for non-featured blog posts-->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class = "row row-cols-1 row-cols-md-2 g-4">
+                            <!-- Blog post-->
+                            {% for item in articles[1:5] %}
+                            <div class="card mb-4">
+                                <a href="#!"><img class="card-img-top" src="{{item['urlToImage']}}" alt="..." /></a>
+                                <div class="card-body">
+                                    <div class="small text-muted">{{item['author']}}</div>
+                                    <h2 class="card-title h4">{{item['title']}}</h2>
+                                    <p class="card-text">{{item['description']}}</p>
+                                    <a class="btn btn-primary" target = "_blank" href="{{item['url']}}">Read more →</a>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                    <!-- Pagination-->
+                    <nav aria-label="Pagination">
+                        <hr class="my-0" />
+                        <ul class="pagination justify-content-center my-4">
+                            {% if last_page_num > 5 %}
+                            {% if page == 1 %}
+                            <li class="page-item disabled"><a class="page-link" href="/home/{{page-1}}">Newer</a></li>
+                            <li class="page-item active" aria-current="page"><a class="page-link" href="/home/1">1</a></li>
+                            <li class="page-item"><a class="page-link" href="/home/2">2</a></li>
+                            <li class="page-item"><a class="page-link" href="/home/3">3</a></li>
+                            <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
+                            <li class="page-item"><a class="page-link" href="/home/{{last_page}}">{{last_page}}</a></li>
+                            <li class="page-item"><a class="page-link" href="/home/{{page+1}}">Older</a></li>
+                            
+                            {% elif page == 2 %}
+                            <li class="page-item"><a class="page-link" href="/home/{{page-1}}">Newer</a></li>
+                            <li class="page-item" aria-current="page"><a class="page-link" href="/home/1">1</a></li>
+                            <li class="page-item active"><a class="page-link" href="/home/2">2</a></li>
+                            <li class="page-item"><a class="page-link" href="/home/3">3</a></li>
+                            <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
+                            <li class="page-item"><a class="page-link" href="/home/{{last_page}}">{{last_page}}</a></li>
+                            <li class="page-item"><a class="page-link" href="/home/{{page+1}}">Older</a></li>
+                            
+                            {% elif page == 3 %}
+                            <li class="page-item"><a class="page-link" href="/home/{{page-1}}">Newer</a></li>
+                            <li class="page-item" aria-current="page"><a class="page-link" href="/home/1">1</a></li>
+                            <li class="page-item "><a class="page-link" href="/home/2">2</a></li>
+                            <li class="page-item active"><a class="page-link" href="/home/3">3</a></li>
+                            <li class="page-item"><a class="page-link" href="/home/4">4</a></li>
+                            <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
+                            <li class="page-item"><a class="page-link" href="/home/{{last_page}}">{{last_page}}</a></li>
+                            <li class="page-item"><a class="page-link" href="/home/{{page+1}}">Older</a></li>
+                            
+
+
+                            {% elif page == (last_page_num) - 2 %}
+                            <li class="page-item"><a class="page-link" href="/home/{{page-1}}">Newer</a></li>
+                            <li class="page-item" aria-current="page"><a class="page-link" href="/home/1">1</a></li>
+                            <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
+                            <li class="page-item "><a class="page-link" href="/home/{{last_page_num-3}}">{{last_page_num-3}}</a></li>
+                            <li class="page-item active"><a class="page-link" href="/home/{{last_page_num-2}}">{{last_page_num-2}}</a></li>
+                            <li class="page-item"><a class="page-link" href="/home/{{last_page_num-1}}">{{last_page_num-1}}</a></li>
+                            
+                            <li class="page-item"><a class="page-link" href="/home/{{last_page}}">{{last_page}}</a></li>
+                            <li class="page-item"><a class="page-link" href="/home/{{page+1}}">Older</a></li>
+                            
+                            {% elif page == (last_page_num) - 1 %}
+                            <li class="page-item"><a class="page-link" href="/home/{{page-1}}">Newer</a></li>
+                            <li class="page-item" aria-current="page"><a class="page-link" href="/home/1">1</a></li>
+                            <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
+                            <li class="page-item"><a class="page-link" href="/home/{{last_page_num-2}}">{{last_page_num-2}}</a></li>
+                            <li class="page-item active"><a class="page-link" href="/home/{{last_page_num-1}}">{{last_page_num-1}}</a></li>
+                            <li class="page-item"><a class="page-link" href="/home/{{last_page}}">{{last_page}}</a></li>
+                            <li class="page-item"><a class="page-link" href="/home/{{page+1}}">Older</a></li>
+                            
+                            {% elif page == (last_page_num) %}
+                            <li class="page-item"><a class="page-link" href="/home/{{page-1}}">Newer</a></li>
+                            <li class="page-item" aria-current="page"><a class="page-link" href="/home/1">1</a></li>
+                            <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
+                            <li class="page-item"><a class="page-link" href="/home/{{last_page_num-2}}">{{last_page_num-2}}</a></li>
+                            <li class="page-item"><a class="page-link" href="/home/{{last_page_num-1}}">{{last_page_num-1}}</a></li>
+                            <li class="page-item active"><a class="page-link" href="/home/{{last_page}}">{{last_page}}</a></li>
+                            <li class="page-item disabled"><a class="page-link" href="/home/{{page+1}}">Older</a></li>
+                            
+                            {% else %}
+                            <li class="page-item"><a class="page-link" href="/home/{{page-1}}">Newer</a></li>
+                            <li class="page-item" aria-current="page"><a class="page-link" href="/home/1">1</a></li>
+                            <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
+                            <li class="page-item"><a class="page-link" href="/home/{{page-1}}">{{page-1}}</a></li>
+                            <li class="page-item active"><a class="page-link" href="/home/{{page}}">{{page}}</a></li>
+                            <li class="page-item"><a class="page-link" href="/home/{{page+1}}">{{page+1}}</a></li>
+                            <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
+                            <li class="page-item"><a class="page-link" href="/home/{{last_page}}">{{last_page}}</a></li>
+                            <li class="page-item"><a class="page-link" href="/home/{{page+1}}">Older</a></li>
+                            {% endif %}
+
+                        {% else %}
+
+                            <li class="page-item disabled"><a class="page-link" href="/home/{{page-1}}">Newer</a></li>
+                            <li class="page-item active" aria-current="page"><a class="page-link" href="/home/1">1</a></li>
+                            <li class="page-item" aria-current="page"><a class="page-link" href="/home/2">2</a></li>
+                            <li class="page-item" aria-current="page"><a class="page-link" href="/home/3">3</a></li>
+                            <li class="page-item" aria-current="page"><a class="page-link" href="/home/4">4</a></li>
+                            <li class="page-item" aria-current="page"><a class="page-link" href="/home/5">5</a></li>
+                            <li class="page-item"><a class="page-link" href="/home/{{page+1}}">Older</a></li>
+                            
+
+
+                        {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+                                {% endblock %}
